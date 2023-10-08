@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>contactus</title>
+</head>
+<style>
+body{
+  background-image:url('https://media.istockphoto.com/id/157681198/photo/dandelion-seed.jpg?b=1&s=170667a&w=0&k=20&c=o8JhDhTWH6WeB2yXixZVwLy1HQ0tR01FKdQM6EIeX3g=');
+  background-size:cover;
+}
+.form-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+form {
+  width: 50%;
+}
+
+label, input, textarea {
+  display: block;
+  width: 60%;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input, textarea {
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 20px;
+}
+
+textarea {
+  height: 100px;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.text{
+  font-size:xx-large;
+  font-weight: bold;
+
+}
+</style>
+<body>
+<center>
+  <section class="text">ContactUs</section>
+  <br><br><br><br><br><br><br><p><br>
+</center>
+    <form method="POST">
+      <h2><label>Name</label></h2>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required/>
+      
+      <h2><label for="email">Email</label></h2>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required/>
+      
+      <h2><label for="message">Message</label></h2>
+      <textarea id="message" name="message" placeholder="Enter your message" required/></textarea>
+      
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+  </section>
+</body>
+</html>

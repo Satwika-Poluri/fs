@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <style>
+        *{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body {
+            background-image: url("https://media.istockphoto.com/id/157681198/photo/dandelion-seed.jpg?b=1&s=170667a&w=0&k=20&c=o8JhDhTWH6WeB2yXixZVwLy1HQ0tR01FKdQM6EIeX3g=");
+            background-size: cover;
+        }
+        label {
+            color: black;
+        }
+        .btnstyle {
+            background-color: rgb(143, 235, 135);
+            color: black;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            margin: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <ul class="flashes">
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    <h1 style="color: black">Registration</h1>
+    </center>
+  
+      
+    <div style="margin-left: 42%; margin-top: 5%">
+    <form method="post">
+        <label>Roll No:</label>
+        <p><input placeholder="Enter roll no" type="text" name="rollno" required/></p>
+        <label>Email:</label>
+       
+        <p><input placeholder="Enter email" type="email" name="email" required/></p>
+        <label>Password:</label>
+        
+        <p><input placeholder="Enter password" type="password" name="password" required/></p>
+        <button class="btnstyle">Create Account</button>
+        <a href="{{url_for('login')}}" target="_blank" style="color: black">Already Have an Account?</a>
+    </form>
+    </div>
+</body>
+</html>

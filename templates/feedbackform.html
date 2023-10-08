@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+header{
+    text-align:center;
+    color:black;
+    font-family: poppins;
+    background-color:transparent;
+    height: 55px;
+    margin-top: 20px;
+    padding: 40px;
+    font-weight: bolder;
+    font-size:40px ;
+
+}    
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+body{
+    background-image: url("https://media.istockphoto.com/id/157681198/photo/dandelion-seed.jpg?b=1&s=170667a&w=0&k=20&c=o8JhDhTWH6WeB2yXixZVwLy1HQ0tR01FKdQM6EIeX3g=");
+    font-size:20px ;
+
+   background-size: cover;
+}
+</style>
+</head>
+<body>
+
+<header>ALL FEEDBACK FORMS</header>
+
+<table>
+ <thead> 
+     <tr>
+             <th>SURVEY ID</th>
+              <th>URL</th>
+              <th>GET SURVEY DATA</th>
+              <th>TIME STAMP</th>
+      </tr>
+  </thead>
+  {% for i in data %}
+  <tbody>
+
+    <!-- {{i}} -->
+    <tr>
+          <td>{{i[0]}}</td>
+          <td>{{i[1]}}</td>
+          <td>{{i[2]}}</td>
+          <td>{{i[3]}}</td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>    
+
+</body>
+</html>
+
+

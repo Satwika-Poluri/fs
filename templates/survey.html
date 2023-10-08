@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Survey Form</title>
+<style>
+    body{
+        background-image: url("https://media.istockphoto.com/id/157681198/photo/dandelion-seed.jpg?b=1&s=170667a&w=0&k=20&c=o8JhDhTWH6WeB2yXixZVwLy1HQ0tR01FKdQM6EIeX3g=");
+        background-size: cover;
+    }
+    .experience{
+        outline: none;
+        border:none;
+        border-bottom-style: solid;
+    }
+    h1{
+        color:black;
+        text-align: center;
+    }
+    .lab{
+        color:black;
+        text-transform: uppercase;
+        
+    }
+    .one{
+        color:black;
+        font-style:oblique;
+
+    }
+</style>
+</head>
+<body>
+<form method="POST">
+<h1>FEEDBACK</h1>
+<div class="lab">
+    <label>Name:</label>
+        <p><input style="font-size: 100%;" placeholder="Enter name" type="text" name="name" required/></p>
+    <label>Rollno:</label>
+        <p><input style="font-size: 100%;" placeholder="Enter rollno" type="text" name="rollno" required/></p>
+    <label>Email:</label>
+        <p><input style="font-size: 100%;" placeholder="Enter email id" type="text" name="email" required/></p>
+    <label>Department:</label>
+        <p><input style="font-size: 100%;" placeholder="department" type="text" name="dept" required/></p>
+    
+    <div style="padding-bottom: 18px;">SPECIALIZATIONS<br/>
+    <br><select id="data_9" name="specialization" style="max-width : 500px;" class="form-control"> <option>(CSCS) Computer Science with Coginitive Systems</option>
+        <option>Economics,Mathematics & Statistics</option>
+        <option>(MPC) Mathematics,Physics & Chemistry</option>
+        <option>(MPCS) Mathematics,Electronics & Computer Science</option>
+        <option>(CAMS) Computer Applications,Mathematics & Statistics</option>
+        <option>(MSDS) Mathematics,Statistics and Data Science</option>
+        <option>(MSCS) Mathematics,Statistics & Computer Science</option>
+        <option>(CAME) Computer Applications,Mathematics & Electronics </option>
+        <option>(BZC) Botany,Zology & Chemistry</option>
+        <option>B.com(General)</option>
+        <option>(Honors)Tax procedures & practice</option>
+        <option>(Honors)Accounting and Finance</option>
+        <option>B.B.A(General)</option>
+        <option>Business Analytics</option>
+        <option>Bachelor of Computer Applications</option>
+        <option>Diploma in Yoga Education</option>
+        </select>
+        </div>
+    <p class="one"> Considering your overall experience with our college, on a scale of Ratings <br></p>
+    <label for="Ratings">Ratings</label>
+    <select id="Ratings" name="one">
+        <option value="Excellent">Excellent</option>
+        <option value="VERY GOOD">VERY GOOD</option>
+        <option value="GOOD">GOOD</option>
+        <option value="AVERAGE">AVERAGE</option>
+        <option value="BAD">BAD</option>
+    </select><br>
+<p>The professors are well-trained and deliver the syllabus efficiently?</p>
+<input class="experience" id="Ratings" name="two"/>
+<p>Are you satisfied with the teaching staff and their teaching methods?</p>
+<input class="experience" id="Ratings" name="three"/>
+<p>How satisfied are you with the facilities provided by the college?</p>
+<select id="Ratings" name="four">
+            <option value="Excellent">Excellent</option>
+            <option value="VERY GOOD">VERY GOOD</option>
+            <option value="GOOD">GOOD</option>
+            <option value="AVERAGE">AVERAGE</option>
+            <option value="BAD">BAD</option>
+        </select><br>
+<p>How satisfied are you with your admission process in college?</p>
+<select id="Ratings" name="five">
+                <option value="Excellent">Excellent</option>
+                <option value="VERY GOOD">VERY GOOD</option>
+                <option value="GOOD">GOOD</option>
+                <option value="AVERAGE">AVERAGE</option>
+                <option value="BAD">BAD</option>
+            </select><br>
+<p>What are your views on the cafeteria and its hygiene and food quality?</p>
+<input class="experience" id="ratings" name="six"/>
+<p>How satisfied are you with your admission process in college??</p>
+<select id="Ratings" name="seven">
+                    <option value="VERY satisfied">VERY satisfied</option>
+                    <option value="LITTLE BIT">LITTLE BIT</option>
+                    <option value="NOT AT ALL satisfied">NOT AT ALL satisfied</option>
+                </select><br>
+               <p>Were the faculty and support staff helpful enough when you needed them?</p>
+               <p> <textarea rows="2" style="width:10%" name="eight" required ></textarea></p>
+                <p>What are your views on the extra-curricular activities carried out in this college?</p>
+                <select id="Ratings" name="nine">
+                    <option value="Excellent">Excellent</option>
+                    <option value="VERY GOOD">VERY GOOD</option>
+                    <option value="GOOD">GOOD</option>
+                    <option value="AVERAGE">AVERAGE</option>
+                    <option value="BAD">BAD</option>
+                </select><br>        
+            <p>What are your views on the cafeteria and its hygiene and food quality?</p>
+            <select id="Ratings" name="ten">
+                    <option value="Excellent">Excellent</option>
+                    <option value="VERY GOOD">VERY GOOD</option>
+                    <option value="GOOD">GOOD</option>
+                    <option value="AVERAGE">AVERAGE</option>
+                    <option value="BAD">BAD</option>
+                </select><br>
+             <p>What are the views on the sports area?</p>
+             <select id="Ratings" name="eleven">
+                    <option value="Excellent">Excellent</option>
+                    <option value="VERY GOOD">VERY GOOD</option>
+                    <option value="GOOD">GOOD</option>
+                    <option value="AVERAGE">AVERAGE</option>
+                    <option value="BAD">BAD</option>
+                </select><br>
+                <p> How Professors are reliable and helpful?</p>
+                <input class="experience" id="Ratings" name="twelve"/>
+                <p> Is This college has well equipped computer access facility?</p>
+                <select id="Ratings" name="thirteen">
+                    <option value="Definitely, Yes">Definitely, Yes</option>
+                    <option value="Probably, Yes">Probably, Yes</option>
+                    <option value="Probably, No">Probably, NO</option>
+                    <option value="Definitely, No">Definitely, No</option>
+                    <option value="Can't say">Cant'say</option>
+                </select><br>
+                <p>Is it easy to gain access to the resources through the college library? </p>
+                <select id="Ratings" name="fourteen">
+                    <option value="Definitely, Yes">Definitely, Yes</option>
+                    <option value="Probably, Yes">Probably, Yes</option>
+                    <option value="Probably, No">Probably, NO</option>
+                    <option value="Definitely, No">Definitely, No</option>
+                    <option value="Can't say">Cant'say</option>
+                </select><br>
+                <p> Do you think it is a good idea for your siblings or friends to pursue their career in this college?</p>
+                <select id="Ratings" name="fifteen">
+                    <option value="Definitely, Yes">Definitely, Yes</option>
+                    <option value="Probably, Yes">Probably, Yes</option>
+                    <option value="Probably, No">Probably, NO</option>
+                    <option value="Definitely, No">Definitely, No</option>
+                    <option value="Can't say">Cant'say</option>
+                </select><br>
+                <p>Do you think college pays enough attention to the racial and ethnic biases?</p>
+                <select id="Ratings" name="sixteen">
+                    <option value="Definitely, Yes">Definitely, Yes</option>
+                    <option value="Probably, Yes">Probably, Yes</option>
+                    <option value="Probably, No">Probably, NO</option>
+                    <option value="Definitely, No">Definitely, No</option>
+                    <option value="Can't say">Cant'say</option>
+                </select><br>
+                <p>Do you think the college responds accurately to bullying cases?</p>
+                <select id="Ratings" name="seventeen">
+                    <option value="Definitely, Yes">Definitely, Yes</option>
+                    <option value="Probably, Yes">Probably, Yes</option>
+                    <option value="Probably, No">Probably, NO</option>
+                    <option value="Definitely, No">Definitely, No</option>
+                    <option value="Can't say">Cant'say</option>
+                </select><br>
+                <p>What is your overall experience with the college?</p>
+                <input class="experience" id="eighteen" name="eighteen"/>
+                <!-- <select id="Ratings" name="Ratings">
+                
+                    <option value="Excellent">Excellent</option>
+                    <option value="VERY GOOD">VERY GOOD</option>
+                    <option value="GOOD">GOOD</option>
+                    <option value="AVERAGE">AVERAGE</option>
+                    <option value="BAD">BAD</option>
+                </select><br> -->
+                <p>Please feel free to give your additional inputs on your experience with this college.</p>
+                <p><textarea rows="9" style="width:30%" name="nineteen" required >Text</textarea></p>
+        <button class="btnstyle">Submit</button>
+             </select><br>
+            </div>
+    </div>  
+</form>    
+</body>
+</html>
