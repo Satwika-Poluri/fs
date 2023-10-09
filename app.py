@@ -10,8 +10,6 @@ import smtplib
 from flask_excel import init_excel
 import mysql.connector  # Import the MySQL library
 from sotp import *
-
-
 from tokenreset import token
 
 import flask_excel as excel
@@ -58,6 +56,17 @@ def create_smtp_server():
 
 # The rest of your routes...
 
+def sendmail(to, body, subject):
+    try:
+        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+        server.ehlo()
+        server.login('satwikapoluri@gmail.com', 'rpcg owoh nkij fmgm')
+        message = f"Subject: {subject}\n\n{body}"
+        server.sendmail('satwikapoluri@gmail.com', to, message)
+        server.close()
+        print("Email sent successfully.")
+    except Exception as e:
+        print(f"Email could not be sent. Error: {str(e)}")
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -172,6 +181,8 @@ def login():
     return render_template('login.html')
 
 @app.route('/logout')
+
+
 def logout():
     if session.get('user'):
         session.pop('user')
@@ -179,68 +190,79 @@ def logout():
         return redirect(url_for('login'))
     else:
         return redirect(url_for('login'))
+
 @app.route('/survey',methods=['GET','POST']) 
 def survey():
     if session.get('user'):
         return render_template('survey.html')
+    
 @app.route('/create', methods=['GET', 'POST'])
 def create():
     if session.get('user'):
         if request.method == 'POST':
-            time = int(request.form['time'])
+            
             sid = tokgenotp()  # Using the tokgenotp() function to generate a random token
-            url = url_for('survey_start', token=token(sid), _external=True)
-            cursor = mysql.connection.cursor()
+            url = url_for('survey_start', token=token(sid, salt='5885cea086b94aa751dbb5e2ae04ac37'), _external=True)  # Provide the salt
+            cursor = mydb.cursor(buffered=True)
             cursor.execute('insert into survey(surveyid, url, rollno) values(%s, %s, %s)', [sid, url, session.get('user')])
-            mysql.connection.commit()
+            mydb.commit()
             return redirect(url_for('dashboard'))
         return render_template('create.html')
     else:
         return redirect(url_for('login'))
 
 
-@app.route('/survey/<token>',methods=['GET','POST'])
+@app.route('/survey/<token>', methods=['GET', 'POST'])
 def survey_start(token):
     try:
-        s=URLSafeTimedSerializer(app.config['SECRET_KEY'])
-        survey_dict=s.loads(token)
-        sid=survey_dict['sid']
-        if request.method=='POST':
+        s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+        survey_dict = s.loads(token)
+        sid = survey_dict['sid']
+        
+        if request.method == 'POST':
+            name = request.form['name']
+            rollno = request.form['rollno']
+            email = request.form['email']
+            dept = request.form['dept']
+            specialization = request.form['specialization']
+            one = request.form['one']
+            two = request.form['two']
+            three = request.form['three']
+            four = request.form['four']
+            five = request.form['five']
+            six = request.form['six']
+            seven = request.form['seven']
+            eight = request.form['eight']
+            nine = request.form['nine']
+            ten = request.form['ten']
+            eleven = request.form['eleven']
+            twelve = request.form['twelve']
+            thirteen = request.form['thirteen']
+            fourteen = request.form['fourteen']
+            fifteen = request.form['fifteen']
+            sixteen = request.form['sixteen']
+            seventeen = request.form['seventeen']
+            eighteen = request.form['eighteen']
+            nineteen = request.form['nineteen']        
             
-            
-            name=request.form['name']
-            rollno=request.form['rollno']
-            email=request.form['email']
-            dept=request.form['dept']
-            specailization=request.form['specialization']
-            one=request.form['one']
-            two=request.form['two']
-            three=request.form['three']
-            four=request.form['four']
-            five=request.form['five']
-            six=request.form['six']
-            seven=request.form['seven']
-            eight=request.form['eight']
-            nine=request.form['nine']
-            ten=request.form['ten']
-            eleven=request.form['eleven']
-            twelve=request.form['twelve']
-            thirteen=request.form['thirteen']
-            fourteen=request.form['fourteen']
-            fifteen=request.form['fifteen']
-            sixteen=request.form['sixteen']
-            seventeen=request.form['seventeen']
-            eighteen=request.form['eighteen']
-            nineteen=request.form['nineteen']        
-            cursor=mysql.connection.cursor()
-            cursor.execute('insert into sur_data values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',[sid,name,rollno,email,dept,specailization,one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen,fourteen,fifteen,sixteen,seventeen,eighteen,nineteen])
-            mysql.connection.commit()
-            return 'Survey submitted successfully'
+            cursor = mydb.cursor(buffered=True)
+            cursor.execute('INSERT INTO sur_data VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', [sid, name, rollno, email, dept, specialization, one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen])
+            mydb.commit()
+
+            flash('Survey submitted successfully', 'success')
+            return redirect(url_for('thank_you'))  # Redirect to thank-you page
+
         return render_template("survey.html")
     except Exception as e:
         print(e)
-        abort(410,description='Survey link expired')
-        
+        abort(410, description='Survey link expired')
+
+@app.route('/thank_you')
+def thank_you():
+    return 'Thank you for submitting the survey!'
+
+
+
 @app.route('/forget', methods=['GET', 'POST'])
 def forget():
     if request.method == 'POST':
@@ -268,6 +290,7 @@ def forget():
     
     return render_template('forgot.html')
 
+
 @app.route('/feedbackform/<token>')
 def feedbackform(token):
     return 'success'
@@ -278,44 +301,61 @@ def preview():
     if session.get('user'):
         return render_template('survey.html')
     else:
-        return redirect(url_for('login'))       
+        return redirect(url_for('login'))
 
 @app.route('/allsurveys')
 def allsurveys():
     if session.get('user'):
-        cursor=mysql.connection.cursor()
-        cursor.execute('SELECT * FROM survey where rollno=%s',[session.get('user')])
-        data=cursor.fetchall()
-        return render_template('allsurveys.html',surveys=data)
+        cursor = mydb.cursor(buffered=True)
+        cursor.execute('SELECT * FROM survey where rollno=%s', [session.get('user')])
+        data = cursor.fetchall()  # Fetch the survey data from the cursor
+        cursor.close()
+        return render_template('allsurveys.html', surveys=data)
     else:
-        return redirect(url_for('login'))  
+        return redirect(url_for('login'))
 
-@app.route('/reset/<token>',methods=['GET','POST'])
+@app.route('/reset/<token>', methods=['GET', 'POST'])
 def reset(token):
     try:
-        serializer=URLSafeTimedSerializer(secret_key)
-        email=serializer.loads(token,salt=salt,max_age=180)
+        serializer = URLSafeTimedSerializer(secret_key)
+        email = serializer.loads(token, salt=salt, max_age=180)
     except:
-        abort(404,'Link Expired')
-    else:
-        if request.method=='POST':
-            newpassword=request.form['npassword']
-            confirmpassword=request.form['cpassword']
-            if newpassword==confirmpassword:
-                cursor=mysql.connection.cursor()
-                cursor.execute('update users set password=%s where email=%s',[newpassword,email])
-                mysql.connection.commit()
+        abort(404, 'Link Expired')
+
+    if request.method == 'POST':
+        newpassword = request.form['npassword']
+        confirmpassword = request.form['cpassword']
+        print("Email:", email)
+        print("New Password:", newpassword)
+        print("Confirm Password:", confirmpassword)
+
+        if newpassword == confirmpassword:
+            cursor = mydb.cursor(buffered=True)
+            cursor.execute('UPDATE users SET password=%s WHERE email=%s', [newpassword, email])
+
+            # Check if any rows were affected (updated)
+            row_count = cursor.rowcount
+            cursor.close()
+            print("Row Count:", row_count)
+            mydb.commit()
+
+
+            if row_count > 0:
                 flash('Reset Successful')
                 return redirect(url_for('login'))
             else:
-                flash('Passwords mismatched')
-                return render_template('newpassword.html')
-        return render_template('newpassword.html')
+                flash('No rows updated in the database.')
+        else:
+            flash('Passwords mismatched')
+            return render_template('newpassword.html')
+
+    return render_template('newpassword.html')
+
 
 
 @app.route('/download/<sid>')
 def download(sid):
-    cursor=mysql.connection.cursor()
+    cursor = mydb.cursor(buffered=True)
     lst=['Name','Roll no','Email','dept','1.Considering your overall experience with our college rate your ratings?',
     '2.The professors are well-trained and deliver the syllabus efficiently?',
     '3.Are you satisfied with the teaching staff and their teaching methods?',
@@ -341,7 +381,7 @@ def download(sid):
     user_data=[list(i)[1:] for i in cursor.fetchall()]
     user_data.insert(0,lst)
     print(user_data)
-    return excel.make_response_from_array(user_data, "xlsx",file_name="Faculty_data")
+    return excel.make_response_from_array(user_data, "xlsx",file_name="Survey_Report")
 
 @app.route('/update_survey', methods=['POST'])
 def update_survey():

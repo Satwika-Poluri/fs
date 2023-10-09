@@ -32,6 +32,18 @@
 <form method="POST">
 <h1>FEEDBACK</h1>
 <div class="lab">
+      <!-- Add the flash message section here -->
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <div class="flash-messages">
+          {% for message in messages %}
+          <div class="alert alert-success" role="alert">
+              {{ message }}
+          </div>
+          {% endfor %}
+      </div>
+      {% endif %}
+      {% endwith %}
     <label>Name:</label>
         <p><input style="font-size: 100%;" placeholder="Enter name" type="text" name="name" required/></p>
     <label>Rollno:</label>
